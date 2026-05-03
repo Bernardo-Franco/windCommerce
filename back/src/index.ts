@@ -1,14 +1,30 @@
 import express from 'express';
 process.loadEnvFile();
-const PORT = process.env.PORT;
+import cors from 'cors';
+import { clerkMiddleware } from '@clerk/express';
+import { clerkWebhookHandler } from './webhooks/clerk.js';
+import { getEnv } from './lib/env.js';
+
+const env = getEnv();
 const app = express();
+
+const rawJson = express.raw({ type: 'application/json', limit: '1mb' });
+
+// its important to run this before the json parse cuz this needs the data as raw json
+app.post('/webhook/clerk', rawJson, (req, res) => {
+  void clerkWebhookHandler(req, res);
+});
+
+app.use(express.json());
+app.use(cors());
+app.use(clerkMiddleware());
 
 app.use('/', (req, res) => {
   res.send('hi');
 });
 
-app.listen(PORT, () => {
-  console.log(`server ready, listening on port: ${PORT}`);
+app.listen(env.PORT, () => {
+  console.log(`server ready, listening on port: ${env.PORT}`);
 });
 
 // import http from 'node:http';
