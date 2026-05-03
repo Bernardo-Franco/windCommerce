@@ -31,7 +31,7 @@ FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY back/package.json back/package-lock.json ./
+COPY back/package.json package-lock.json ./
 RUN npm install --omit=dev --no-audit --no-fund && npm cache clean --force
 
 COPY --from=backend-build /app/dist ./dist
