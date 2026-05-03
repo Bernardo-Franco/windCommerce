@@ -1,5 +1,6 @@
 import express from 'express';
-process.loadEnvFile();
+import { loadEnvFile } from 'node:process';
+loadEnvFile();
 import cors from 'cors';
 
 import fs from 'node:fs';

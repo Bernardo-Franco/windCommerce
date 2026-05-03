@@ -1,6 +1,7 @@
 /// <reference types="node"/>
 import { defineConfig } from 'drizzle-kit';
-process.loadEnvFile();
+import { loadEnvFile } from 'node:process';
+loadEnvFile();
 
 export default defineConfig({
   schema: './src/db/schema.ts',
