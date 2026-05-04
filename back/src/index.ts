@@ -9,6 +9,9 @@ import { clerkMiddleware } from '@clerk/express';
 import { clerkWebhookHandler } from './webhooks/clerk.js';
 import { getEnv } from './lib/env.js';
 import keepAliveCronJob from './lib/cron.js';
+import meRouter from './routes/meRoutes.js';
+import productRouter from './routes/productRoutes.js';
+import streamRouter from './routes/streamRouter.js';
 
 const env = getEnv();
 const app = express();
@@ -27,6 +30,10 @@ app.use(clerkMiddleware());
 app.get('/health', (_req, res) => {
   res.json({ ok: true });
 });
+
+app.use('/api/me', meRouter);
+app.use('/api/products', productRouter);
+app.use('/api/stream', streamRouter);
 
 const publicDir = path.join(process.cwd(), 'public');
 if (fs.existsSync(publicDir)) {
@@ -47,24 +54,9 @@ if (fs.existsSync(publicDir)) {
   });
 }
 
+// TODO add error handler middleware
+
 app.listen(env.PORT, () => {
   console.log(`server ready, listening on port: ${env.PORT}`);
   if (env.NODE_ENV === 'production') keepAliveCronJob.start();
 });
-
-// import http from 'node:http';
-// import { neon } from '@neondatabase/serverless';
-// process.loadEnvFile();
-
-// const sql = neon(process.env.DATABASE_URL);
-
-// const requestHandler = async (_: any, res: any) => {
-//   const result = await sql`SELECT version()`;
-//   const { version } = result[0];
-//   res.writeHead(200, { 'Content-Type': 'text/plain' });
-//   res.end(version);
-// };
-
-// http.createServer(requestHandler).listen(3000, () => {
-//   console.log('Server running at http://localhost:3000');
-// });
