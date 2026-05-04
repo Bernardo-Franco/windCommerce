@@ -8,6 +8,7 @@ import path from 'node:path';
 import { clerkMiddleware } from '@clerk/express';
 import { clerkWebhookHandler } from './webhooks/clerk.js';
 import { getEnv } from './lib/env.js';
+import keepAliveCronJob from './lib/cron.js';
 
 const env = getEnv();
 const app = express();
@@ -22,6 +23,10 @@ app.post('/webhook/clerk', rawJson, (req, res) => {
 app.use(express.json());
 app.use(cors());
 app.use(clerkMiddleware());
+// the underscore at the start of the parameter is a convention to say this one is not gonna be used
+app.get('/health', (_req, res) => {
+  res.json({ ok: true });
+});
 
 const publicDir = path.join(process.cwd(), 'public');
 if (fs.existsSync(publicDir)) {
@@ -44,6 +49,7 @@ if (fs.existsSync(publicDir)) {
 
 app.listen(env.PORT, () => {
   console.log(`server ready, listening on port: ${env.PORT}`);
+  if (env.NODE_ENV === 'production') keepAliveCronJob.start();
 });
 
 // import http from 'node:http';
