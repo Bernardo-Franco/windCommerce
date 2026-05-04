@@ -1,6 +1,5 @@
+import 'dotenv/config';
 import express from 'express';
-import { loadEnvFile } from 'node:process';
-loadEnvFile();
 import cors from 'cors';
 
 import fs from 'node:fs';
