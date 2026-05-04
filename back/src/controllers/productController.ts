@@ -29,7 +29,7 @@ export const listProducts = async (
   }
 };
 export const getCategories = async (
-  req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction,
 ) => {
