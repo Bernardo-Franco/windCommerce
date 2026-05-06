@@ -13,7 +13,7 @@ export type OrderStatus = 'pending' | 'paid' | 'failed';
 export type UserRole = 'customer' | 'support' | 'admin';
 
 export type CheckoutSessionLine = {
-  productId: String;
+  productId: string;
   quantity: number;
   unitPriceCents: number;
 };
