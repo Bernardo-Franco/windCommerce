@@ -15,6 +15,7 @@ import meRouter from './routes/meRoutes.js';
 import productRouter from './routes/productRoutes.js';
 import streamRouter from './routes/streamRouter.js';
 import checkoutRouter from './routes/checkoutRoutes.js';
+import adminRouter from './routes/adminRoutes.js';
 import { polarWebhookHandler } from './webhooks/polar.js';
 import { sentryClerkUserMiddleware } from './middleware/sentryClerkUser.js';
 
@@ -44,7 +45,7 @@ app.use('/api/me', meRouter);
 app.use('/api/products', productRouter);
 app.use('/api/stream', streamRouter);
 app.use('/api/checkout', checkoutRouter);
-
+app.use('/api/admin', adminRouter);
 const publicDir = path.join(process.cwd(), 'public');
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
@@ -77,12 +78,10 @@ app.use(
   ) => {
     const sentryId = (res as express.Response & { sentry?: string }).sentry;
 
-    res
-      .status(500)
-      .json({
-        error: 'Internal server error',
-        ...(sentryId !== undefined && { sentryId }),
-      });
+    res.status(500).json({
+      error: 'Internal server error',
+      ...(sentryId !== undefined && { sentryId }),
+    });
   },
 );
 
