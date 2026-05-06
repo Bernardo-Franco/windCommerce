@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import { getEnv } from '../lib/env.js';
 import { z } from 'zod';
 import { getAuth } from '@clerk/express';

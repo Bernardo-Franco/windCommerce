@@ -1,7 +1,7 @@
 import { getAuth } from '@clerk/express';
-import { NextFunction, Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import { getLocalUser } from '../lib/user.js';
-import { isAdmin } from '../webhooks/roles.js';
+import { isAdmin } from '../lib/roles.js';
 import ImageKit from '@imagekit/nodejs';
 import { getEnv } from '../lib/env.js';
 import { count, desc, eq } from 'drizzle-orm';

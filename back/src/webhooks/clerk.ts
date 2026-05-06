@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
 import { getEnv } from '../lib/env.js';
 import { verifyWebhook } from '@clerk/backend/webhooks';
-import { parseRole } from './roles.js';
+import { parseRole } from '../lib/roles.js';
 import { db } from '../db/index.js';
 import { users } from '../db/schema.js';
 import { eq } from 'drizzle-orm';

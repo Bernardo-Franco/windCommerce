@@ -16,6 +16,7 @@ import productRouter from './routes/productRoutes.js';
 import streamRouter from './routes/streamRouter.js';
 import checkoutRouter from './routes/checkoutRoutes.js';
 import adminRouter from './routes/adminRoutes.js';
+import orderRouter from './routes/orderRoutes.js';
 import { polarWebhookHandler } from './webhooks/polar.js';
 import { sentryClerkUserMiddleware } from './middleware/sentryClerkUser.js';
 
@@ -46,6 +47,9 @@ app.use('/api/products', productRouter);
 app.use('/api/stream', streamRouter);
 app.use('/api/checkout', checkoutRouter);
 app.use('/api/admin', adminRouter);
+
+app.use('/api/orders', orderRouter);
+
 const publicDir = path.join(process.cwd(), 'public');
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
