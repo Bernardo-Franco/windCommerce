@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-const SentryErrorFallback = () => {
+export function SentryErrorFallback() {
   return (
     <div className="mx-auto max-w-md rounded-box border border-base-300 bg-base-100 p-8 text-center">
       <p className="text-base-content/80">
@@ -10,5 +10,4 @@ const SentryErrorFallback = () => {
       </Link>
     </div>
   );
-};
-export default SentryErrorFallback;
+}

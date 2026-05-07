@@ -6,8 +6,8 @@ import { ClerkProvider } from '@clerk/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as Sentry from '@sentry/react';
 import { BrowserRouter } from 'react-router';
-import SentryErrorFallback from './components/SentryErrorFallback.jsx';
-import SentryUserSync from './components/SentryUserSync.jsx';
+import { SentryErrorFallback } from './components/SentryErrorFallback.jsx';
+import { SentryUserSync } from './components/SentryUserSync.jsx';
 
 const queryClient = new QueryClient();
 
@@ -39,7 +39,7 @@ Sentry.init({
     }),
   ],
   tracesSampleRate: 1.0, // in prod this can be 0.1 check docs of sentry
-  tracePropagationTargets,
+  tracePropagationTargets: tracePropagationTargets,
   replaysSessionSampleRate: 1.0,
   replaysOnErrorSampleRate: 1.0,
   enableLogs: true,

@@ -3,7 +3,7 @@ import * as Sentry from '@sentry/react';
 import { useEffect } from 'react';
 
 /* keeps sentry user context in sync with clerk (errors and replays show which user) */
-const SentryUserSync = () => {
+export function SentryUserSync() {
   const { isLoaded, userId } = useAuth();
   useEffect(() => {
     if (!isLoaded) return;
@@ -11,5 +11,4 @@ const SentryUserSync = () => {
   }, [isLoaded, userId]);
 
   return null;
-};
-export default SentryUserSync;
+}
