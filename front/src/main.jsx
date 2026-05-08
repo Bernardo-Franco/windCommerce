@@ -51,9 +51,9 @@ createRoot(document.getElementById('root')).render(
       <SentryUserSync />
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <Sentry.ErrorBoundary fallback={<SentryErrorFallback />}>
-            <App />
-          </Sentry.ErrorBoundary>
+          {/* <Sentry.ErrorBoundary fallback={<SentryErrorFallback />}> */}
+          <App />
+          {/* </Sentry.ErrorBoundary> */}
         </BrowserRouter>
       </QueryClientProvider>
     </ClerkProvider>

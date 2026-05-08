@@ -30,7 +30,7 @@ export const useCart = create(
           return;
         }
         const items = get().items.map((i) =>
-          i.productId === productId ? { ...item, quantity } : i,
+          i.productId === productId ? { ...i, quantity } : i,
         );
         set({ items });
       },
