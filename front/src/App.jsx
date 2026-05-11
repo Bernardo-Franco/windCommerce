@@ -7,7 +7,7 @@ import CartPage from './pages/CartPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import OrdersPage from './pages/OrdersPage';
 import CheckoutReturnPage from './pages/CheckoutReturnPage';
-import SentryDemoPage from './pages/SentryDemoPage';
+import { SentryDemoPage } from './pages/SentryDemoPage';
 import OrderVideoPage from './pages/OrderVideoPage';
 import AdminProductsPage from './pages/AdminProductsPage';
 import OrderDetailPage from './pages/OrderDetailPage';
